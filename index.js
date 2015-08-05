@@ -9,7 +9,7 @@ function login(req, res, next) {
 			return res.forbidden('Authentication failure.');
 		}
 		return res.ok('Authenticated.');
-	});
+	})(req, res, next);
 }
 
 module.exports = function(sails) {
