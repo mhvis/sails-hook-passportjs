@@ -1,0 +1,31 @@
+{
+  "name": "sails-hook-passportjs",
+  "version": "0.1.0",
+  "description": "Sails hook to add authentication functionality using Passport.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhvis/sails-hook-passportjs.git"
+  },
+  "keywords": [
+    "sails",
+    "hook",
+    "passport",
+    "passport.js"
+  ],
+  "author": "Maarten Visscher <mail@maartenvisscher.nl>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mhvis/sails-hook-passportjs/issues"
+  },
+  "homepage": "https://github.com/mhvis/sails-hook-passportjs#readme",
+  "sails": {
+    "isHook": true
+  },
+  "dependencies": {
+    "passport": "^0.2.2"
+  }
+}
