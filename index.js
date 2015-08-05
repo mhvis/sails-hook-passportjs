@@ -25,6 +25,16 @@ module.exports = function(sails) {
 			});
 			passport.serializeUser(config.serializeUser);
 			passport.deserializeUser(config.deserializeUser);
+		},
+		routes: {
+			before: {
+				'get /user/login': passport.authenticate('local'),
+				'post /user/login': passport.authenticate('local'),
+				'get /user/logout': function(req, res, next) {
+					req.logout();
+					return next();
+				}
+			}
 		}
 	};
 };
