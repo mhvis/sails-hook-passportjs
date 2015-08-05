@@ -10,15 +10,14 @@ module.exports = function(sails) {
 			// Get configurations.
 			var middleware = sails.config.http.middleware;
 			var config = sails.config.passport;
-			// Add passport.initialize() middleware.
-			middleware.passportInit = passport.initialize();
-			middleware.order.unshift('passportInit');
-			// If using session middleware, add passport.session() middleware.
 			var sessionIndex = middleware.order.indexOf('session');
-			if (sessionIndex != -1) {
-				middleware.passportSession = passport.session();
-				middleware.order.splice(sessionIndex + 1, 0, 'passportSession');
+			if (sessionIndex == -1) {
+				return false;
 			}
+			// Add passport.initialize() and session() middleware.
+			middleware.passportInit = passport.initialize();
+			middleware.passportSession = passport.session();
+			middleware.order.splice(sessionIndex + 1, 0, 'passportInit', 'passportSession');
 			// Supply configured strategies.
 			config.strategies.forEach(function(strategy) {
 				passport.use(strategy);
