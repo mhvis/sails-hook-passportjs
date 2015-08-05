@@ -1,5 +1,17 @@
 var passport = require('passport');
 
+function login(req, res, next) {
+	passport.authenticate('local', function(err, user) {
+		if (err) {
+			return next(err);
+		}
+		if (!user) {
+			return res.forbidden('Authentication failure.');
+		}
+		return res.ok('Authenticated.');
+	});
+}
+
 module.exports = function(sails) {
 	return {
 		/**
@@ -27,11 +39,11 @@ module.exports = function(sails) {
 		},
 		routes: {
 			before: {
-				'get /user/login': passport.authenticate('local'),
-				'post /user/login': passport.authenticate('local'),
+				'get /user/login': login,
+				'post /user/login': login,
 				'get /user/logout': function(req, res, next) {
 					req.logout();
-					return next();
+					return res.ok('Logged out.');
 				}
 			}
 		}
