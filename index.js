@@ -39,8 +39,8 @@ module.exports = function(sails) {
 		},
 		routes: {
 			before: {
-				'get /user/login': passport.authenticate('login'),
-				'post /user/login': passport.authenticate('login'),
+				'get /user/login': passport.authenticate('local'),
+				'post /user/login': passport.authenticate('local'),
 				'get /user/logout': function(req, res, next) {
 					req.logout();
 					return res.ok('Logged out.');
